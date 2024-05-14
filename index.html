@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Movie API</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>The 100 MovieHub</h1>
+      <div class="hamburger-menu" onclick="showAll()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div> <!-- Hamburger menu icon -->
+    </header>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search movies...">
+        <button onclick="searchMovies()">Search</button>
+      </div>
+      <div id="movie-container"></div>
+      <script src="js/main.js"></script>
+  </body>
+</html>
