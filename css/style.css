@@ -18,7 +18,7 @@ body, h1, ul, li {
   
   h1 {
     background-color: #333; /* Dark background color */
-    color: #fff; /* Text color */
+    color: #ffffff; /* Text color */
     padding: 20px;
     text-align: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
@@ -33,20 +33,21 @@ body, h1, ul, li {
     justify-content: center;
   }
 
+  .movie-element {
+    position: relative;
+  }
+
   img {
     border: 10px solid rgb(213, 191, 191); /* Black border */
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
   }
+  
   .movie-spacing {
     width: 50px;
     height: 20px;
     padding-bottom: 30px;
 }
-  
-  .movie-title {
-    text-align: center;
-    padding: 10px;
-  }
   
   /* Hover effect for movie items */
   .movie-item:hover {
@@ -129,4 +130,65 @@ body, h1, ul, li {
 
   .hamburger-menu.open .bar:nth-child(3) {
       transform: translateY(-8px) rotate(45deg);
+  }
+
+  .heart-button {
+    position: absolute;
+    top: 10px;
+    right: 350px;
+    background-color: transparent;
+    border: none;
+    font-size: 44px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    transition: color 0.3s ease;
+  }
+  
+  .heart-button.active {
+    color: red; /* Color of the heart when active (favorited) */
+  }
+  
+  .heart-button:hover {
+    color: rgb(180, 103, 116);
+  }
+
+  #watchlist-button {
+    display: inline-block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #8400ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 700px;
+    cursor: pointer;
+    z-index: 1000;
+    text-decoration: underline;
+    text-decoration-color: #8400ff;
+  }
+  
+  #watchlist-button:hover {
+    background-color: #9d0b79;
+    text-decoration-color: #9d0b79;
+  }
+
+  #home-button {
+    display: inline-block;
+    position: fixed;
+    top: 20px;
+    padding: 10px 20px;
+    background-color: #8400ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: pointer;
+    margin-left: 20px;
+    z-index: 1000;
+    text-decoration: underline;
+    text-decoration-color: #8400ff;
   }

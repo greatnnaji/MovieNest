@@ -1,4 +1,3 @@
-var result;
 const url = 'https://imdb-top-100-movies.p.rapidapi.com/';
 const options = {
 	method: 'GET',
@@ -20,13 +19,15 @@ fetch(url, options)
     console.error(error);
   });
 
-
+  //let likedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
+  let likedMovies = [];
+  var result;
 
 function searchMovies() {
     var input, filter;
     input = document.getElementById('search-input');
     filter = input.value.toUpperCase();
-    // Get a reference to the container where you want to append the image
+    // Get a reference to the container where to append the image
     var container = document.getElementById("movie-container");
     // Clear previous content in the container
     container.innerHTML = '';
@@ -50,7 +51,23 @@ function searchMovies() {
           imgElement.alt = movie.title;
           // Append the image element to the anchor element
           movieLink.appendChild(imgElement);
-
+          
+          // Add heart button
+          var heartButton = document.createElement("button");
+          heartButton.classList.add("heart-button");
+          heartButton.innerHTML = "&#9829;";
+          heartButton.onclick = function(event) {
+            event.stopPropagation();
+            heartButton.classList.toggle("active");
+            if (heartButton.classList.contains("active")) {
+              likedMovies.push(movie);
+            } else {
+              likedMovies = likedMovies.filter(m => m !== movie);
+            }
+            localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+          };
+          
+          movieElement.appendChild(heartButton);
           // Append the movie element to the container
           container.appendChild(movieElement);
           moviesFound = true;
@@ -95,6 +112,24 @@ function showAll() {
     // Append the image element to the anchor element
     movieLink.appendChild(imgElement);
 
+    // Add heart button
+    var heartButton = document.createElement("button");
+    heartButton.classList.add("heart-button");
+    heartButton.innerHTML = "&#9829;";
+    heartButton.onclick = function(event) {
+      event.stopPropagation();
+      heartButton.classList.toggle("active");
+      if (heartButton.classList.contains("active")) {
+        likedMovies.push(movie);//add to liked movies if heartbutton is active
+      } else {
+        likedMovies = likedMovies.filter(m => m !== movie);
+        //checks the heart buttons activity of every movie in our liked movies array 
+      }
+      localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+      //update the local storage
+    };
+
+    movieElement.appendChild(heartButton);
     // Append the movie element to the container
     container.appendChild(movieElement);
     moviesFound = true;
