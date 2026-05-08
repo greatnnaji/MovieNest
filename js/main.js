@@ -1,26 +1,17 @@
-const url = 'https://imdb-top-100-movies.p.rapidapi.com/';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'bbfe63a4e9msh7ac13de51212066p142673jsn536230286bc4',
-		'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
-	}
-};
-
-fetch(url, options)
+fetch('/api/movies')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
-    result = data;
+    result = data.map((movie, index) => ({ ...movie, id: index}));
     console.log(result);
   })
   .catch(function(error) {
     console.error(error);
   });
 
-  //let likedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-  let likedMovies = [];
+  // let likedMovies = []
+  let likedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
   var result;
 
 function searchMovies() {
@@ -60,7 +51,9 @@ function searchMovies() {
             event.stopPropagation();
             heartButton.classList.toggle("active");
             if (heartButton.classList.contains("active")) {
-              likedMovies.push(movie);
+              if (!likedMovies.some(m => m.id === movie.id)) {
+                likedMovies.push(movie);
+              }
             } else {
               likedMovies = likedMovies.filter(m => m !== movie);
             }
@@ -94,6 +87,7 @@ function searchMovies() {
 
 function showAll() {
   var container = document.getElementById("movie-container");
+  container.innerHTML = '';
   result.forEach((movie, index) => {
     // Create a div element for the movie with the movie-element class
     var movieElement = document.createElement("div");
@@ -120,7 +114,9 @@ function showAll() {
       event.stopPropagation();
       heartButton.classList.toggle("active");
       if (heartButton.classList.contains("active")) {
-        likedMovies.push(movie);//add to liked movies if heartbutton is active
+        if (!likedMovies.some(m => m.id === movie.id)) {
+          likedMovies.push(movie);
+        }
       } else {
         likedMovies = likedMovies.filter(m => m !== movie);
         //checks the heart buttons activity of every movie in our liked movies array 
