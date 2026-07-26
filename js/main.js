@@ -1,10 +1,11 @@
-fetch('/api/movies')
+let result = [];
+
+const moviesPromise = fetch('/api/movies')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
     result = data.map((movie, index) => ({ ...movie, id: index}));
-    console.log(result);
   })
   .catch(function(error) {
     console.error(error);
@@ -12,9 +13,9 @@ fetch('/api/movies')
 
   // let likedMovies = []
   let likedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-  var result;
 
-function searchMovies() {
+async function searchMovies() {
+    await moviesPromise;
     var input, filter;
     input = document.getElementById('search-input');
     filter = input.value.toUpperCase();
@@ -23,7 +24,7 @@ function searchMovies() {
     // Clear previous content in the container
     container.innerHTML = '';
     var moviesFound = false;
-    if(filter != '' && result){
+    if(filter != ''){
       result.forEach((movie, index) => {
         if (movie.title.toUpperCase().includes(filter)) {
           // Create a div element for the movie with the movie-element class
@@ -85,12 +86,10 @@ function searchMovies() {
     input.value = "";
 }
 
-function showAll() {
+async function showAll() {
+  await moviesPromise;
   var container = document.getElementById("movie-container");
   container.innerHTML = '';
-  if (!result) {
-    return;
-  }
   result.forEach((movie, index) => {
     // Create a div element for the movie with the movie-element class
     var movieElement = document.createElement("div");
