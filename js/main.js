@@ -1,10 +1,11 @@
-fetch('/api/movies')
+let result = [];
+
+const moviesPromise = fetch('/api/movies')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
     result = data.map((movie, index) => ({ ...movie, id: index}));
-    console.log(result);
   })
   .catch(function(error) {
     console.error(error);
@@ -12,9 +13,9 @@ fetch('/api/movies')
 
   // let likedMovies = []
   let likedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-  var result;
 
-function searchMovies() {
+async function searchMovies() {
+    await moviesPromise;
     var input, filter;
     input = document.getElementById('search-input');
     filter = input.value.toUpperCase();
@@ -85,7 +86,8 @@ function searchMovies() {
     input.value = "";
 }
 
-function showAll() {
+async function showAll() {
+  await moviesPromise;
   var container = document.getElementById("movie-container");
   container.innerHTML = '';
   result.forEach((movie, index) => {
