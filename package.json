@@ -1,0 +1,24 @@
+{
+  "name": "movienest",
+  "version": "1.0.0",
+  "description": "MovieNest is a simple web app for browsing the IMDb Top 100 movies, searching by title, and building a personal watchlist by \"liking\" movies. It's built with a lightweight Node/Express server that proxies requests to the RapidAPI IMDb Top 100 Movies API, plus a vanilla HTML/CSS/JS frontend.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greatnnaji/MovieNest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greatnnaji/MovieNest/issues"
+  },
+  "homepage": "https://github.com/greatnnaji/MovieNest#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
