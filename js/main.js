@@ -23,7 +23,7 @@ function searchMovies() {
     // Clear previous content in the container
     container.innerHTML = '';
     var moviesFound = false;
-    if(filter != ''){
+    if(filter != '' && result){
       result.forEach((movie, index) => {
         if (movie.title.toUpperCase().includes(filter)) {
           // Create a div element for the movie with the movie-element class
@@ -88,6 +88,9 @@ function searchMovies() {
 function showAll() {
   var container = document.getElementById("movie-container");
   container.innerHTML = '';
+  if (!result) {
+    return;
+  }
   result.forEach((movie, index) => {
     // Create a div element for the movie with the movie-element class
     var movieElement = document.createElement("div");
