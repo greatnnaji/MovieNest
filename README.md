@@ -1,5 +1,7 @@
 # MovieNest
 
+![MovieNest screenshot](docs/screenshot.png)
+
 MovieNest is a simple web app for browsing the IMDb Top 100 movies, searching by title, and building a personal watchlist by "liking" movies. It's built with a lightweight Node/Express server that proxies requests to the RapidAPI IMDb Top 100 Movies API, plus a vanilla HTML/CSS/JS frontend.
 
 ## Features
